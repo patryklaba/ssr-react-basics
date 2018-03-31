@@ -4,6 +4,6 @@ import Hello from './components/hello';
 
 
 ReactDOM.render(
-    <Hello name="Patryk" />,
+    <Hello initText="Hello darkness my old friend" />,
     document.getElementById('root')
 );
