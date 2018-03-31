@@ -1,3 +1,9 @@
-const message = "Workinnnnn' :)";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Hello from './components/hello';
 
-console.log(message);
+
+ReactDOM.render(
+    <Hello name="Patryk" />,
+    document.getElementById('root')
+);
