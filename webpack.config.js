@@ -3,10 +3,15 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/js/client.js',
+    entry: {
+        client: [
+            'babel-polyfill',
+            './src/js/client.js',
+        ]
+    },
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'app.bundle.js'
+        filename: '[name].js'
     },
     module: {
         rules: [
@@ -28,6 +33,18 @@ module.exports = {
                         options: { minimize: true }
                     }
                 ]
+            },
+            {
+                test: /\.jsx?$/,
+                loader: "babel-loader",
+                include: [path.resolve(__dirname, 'src')],
+                query: {
+                    presets: [
+                        'env',
+                        'stage-2',
+                        'react'
+                    ]
+                }
             }
         ]
     },

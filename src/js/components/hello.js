@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
+class Hello extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: this.props.initText
+        };
+        this.onButtonClick = this.onButtonClick.bind(this);
+    }
 
-const Hello = ( { name }) => {
-    return (
-        <div>
-            <h1>Hello, {name}.</h1> 
-            <h2>Good to see you again! Let's get to work together</h2>
-        </div>
-    );
+    onButtonClick(event) {
+        event.preventDefault();
+        this.setState({text: 'Text changed in the browser!'});
+    }
+
+    render() {
+        return (
+            <div>
+                <p>{this.state.text}</p>
+                <button onClick={this.onButtonClick}>change text!</button>
+            </div>
+        );
+    }
 }
 
 export default Hello;
