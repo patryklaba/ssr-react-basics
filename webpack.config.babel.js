@@ -38,18 +38,12 @@ const clientConfig = {
       path: path.resolve(__dirname, 'build'),
       filename: '[name].js'
     },
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            chunks: "initial",
-            test: "vendor",
-            name: "vendor",
-            enforce: true
-          }
-        }
-      }
-    },  
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: module => /node_modules/.test(module.resource)
+      }),
+    ],
   
     devtool: 'cheap-module-source-map',
   
