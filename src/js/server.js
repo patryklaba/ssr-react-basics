@@ -10,18 +10,19 @@ const app = express();
 
 app.use(express.static(path.join(__dirname)));
 
-app.get('*', async (req, res, next) => {
-    const scripts = ['vendor.js', 'client.js'];
+app.get('*', async (req, res) => {
+  const scripts = ['vendor.js', 'client.js'];
+  const initialState = {initText: "rendered on the server"};
 
-    const appMarkup = ReactDOMServer.renderToString(
-        <App initText="rendered on the server" />
-    );
+  const appMarkup = ReactDOMServer.renderToString( <App {...initialState} /> );
+  const html = ReactDOMServer.renderToStaticMarkup(
+    <Html 
+      children={appMarkup} 
+      scripts={scripts} 
+      initialState={initialState} />
+  );
 
-    const html = ReactDOMServer.renderToStaticMarkup(
-        <Html children={appMarkup} scripts={scripts} />
-    );
-
-    res.send(`<!doctype html>${html}`);
+  res.send(`<!doctype html>${html}`);
 });
 
-app.listen(3000, () => console.log('Listening on :3000'));
+app.listen(3000, () => console.log('Listening on localhost:3000'));

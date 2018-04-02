@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Hello from './components/hello';
 
-
-ReactDOM.render(
-    <Hello initText="Hello darkness my old friend" />,
-    document.getElementById('root')
+// hydrate should be used if components are rendered on the server
+ReactDOM.hydrate(
+    <Hello {...window.APP_STATE} />,
+    document.getElementById('app')
 );
