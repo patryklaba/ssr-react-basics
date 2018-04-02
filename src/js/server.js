@@ -14,7 +14,7 @@ app.get('*', async (req, res, next) => {
     const scripts = ['vendor.js', 'client.js'];
 
     const appMarkup = ReactDOMServer.renderToString(
-        <Hello initText="rendered on the server" />
+        <App initText="rendered on the server" />
     );
 
     const html = ReactDOMServer.renderToStaticMarkup(

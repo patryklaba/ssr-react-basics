@@ -22,7 +22,7 @@ class Html extends Component {
                     ></div>
                     {scripts.map((item, index)=>{
                         return <script key={index} src={item}></script>
-                    })};
+                    })}
                 </body>
             </html>
         );
